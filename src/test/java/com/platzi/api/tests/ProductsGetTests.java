@@ -10,7 +10,6 @@ import static org.hamcrest.Matchers.*;
 
 public class ProductsGetTests extends BaseTest {
 
-    // ==================== TC-PROD-001 ====================
     @Test(description = "GET /products returns 200 with a non-empty list of products",
           groups = {"products", "smoke"})
     public void TC_PROD_001_GetAllProducts() {
@@ -31,7 +30,6 @@ public class ProductsGetTests extends BaseTest {
         log("Products list returned successfully");
     }
 
-    // ==================== TC-PROD-002 ====================
     @Test(description = "GET /products/{id} with valid ID returns correct product",
           groups = {"products", "smoke"})
     public void TC_PROD_002_GetProductById_Valid() {
@@ -54,7 +52,6 @@ public class ProductsGetTests extends BaseTest {
         log("Product with ID=4 returned successfully");
     }
 
-    // ==================== TC-PROD-003 ====================
     @Test(description = "GET /products/{id} with non-existent ID returns 404 or empty",
           groups = {"products", "negative"})
     public void TC_PROD_003_GetProductById_NotFound() {
@@ -67,14 +64,12 @@ public class ProductsGetTests extends BaseTest {
         .then()
                 .extract().response();
 
-        // API may return 400 or 404 for non-existent product
         assert response.statusCode() == 400 || response.statusCode() == 404
                 : "Expected 400 or 404, got: " + response.statusCode();
 
         log("Received " + response.statusCode() + " as expected for non-existent ID");
     }
 
-    // ==================== TC-PROD-004 ====================
     @Test(description = "GET /products/slug/{slug} returns product matching slug",
           groups = {"products"})
     public void TC_PROD_004_GetProductBySlug_Valid() {
@@ -92,7 +87,6 @@ public class ProductsGetTests extends BaseTest {
         log("Product by slug returned successfully");
     }
 
-    // ==================== TC-PROD-005 ====================
     @Test(description = "GET /products/slug/{slug} with invalid slug returns 400/404",
           groups = {"products", "negative"})
     public void TC_PROD_005_GetProductBySlug_Invalid() {
@@ -111,7 +105,6 @@ public class ProductsGetTests extends BaseTest {
         log("Received 4xx as expected for invalid slug");
     }
 
-    // ==================== TC-PROD-006 ====================
     @Test(description = "GET /products?limit=5 returns exactly 5 products",
           groups = {"products", "pagination"})
     public void TC_PROD_006_GetProductsWithLimit() {
@@ -132,7 +125,6 @@ public class ProductsGetTests extends BaseTest {
         log("Pagination limit=5 returned " + size + " products");
     }
 
-    // ==================== TC-PROD-007 ====================
     @Test(description = "GET /products?offset=10&limit=10 returns second page",
           groups = {"products", "pagination"})
     public void TC_PROD_007_GetProductsWithOffsetPagination() {
@@ -152,7 +144,6 @@ public class ProductsGetTests extends BaseTest {
         log("Pagination offset=10 returned successfully");
     }
 
-    // ==================== TC-PROD-008 ====================
     @Test(description = "GET /products?limit=0 returns empty list or valid response",
           groups = {"products", "boundary"})
     public void TC_PROD_008_GetProductsLimitZero() {
@@ -173,7 +164,6 @@ public class ProductsGetTests extends BaseTest {
         log("Boundary limit=0 responded with: " + response.statusCode());
     }
 
-    // ==================== TC-PROD-009 ====================
     @Test(description = "GET /products/{id}/related returns list of related products",
           groups = {"products"})
     public void TC_PROD_009_GetRelatedProductsById() {
@@ -191,7 +181,6 @@ public class ProductsGetTests extends BaseTest {
         log("Related products by ID returned successfully");
     }
 
-    // ==================== TC-PROD-010 ====================
     @Test(description = "GET /products/slug/{slug}/related returns related products by slug",
           groups = {"products"})
     public void TC_PROD_010_GetRelatedProductsBySlug() {
@@ -209,7 +198,6 @@ public class ProductsGetTests extends BaseTest {
         log("Related products by slug returned successfully");
     }
 
-    // ==================== TC-PROD-011 ====================
     @Test(description = "Response body schema: product has id, title, price, description, category, images",
           groups = {"products", "schema"})
     public void TC_PROD_011_ProductSchemaValidation() {

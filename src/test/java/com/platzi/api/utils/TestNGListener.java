@@ -9,7 +9,7 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         if (ExtentReportManager.getTest() != null) {
-            ExtentReportManager.getTest().log(Status.PASS, "✅ PASSED");
+            ExtentReportManager.getTest().log(Status.PASS, "PASSED");
         }
     }
 
@@ -17,7 +17,7 @@ public class TestNGListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         if (ExtentReportManager.getTest() != null) {
             ExtentReportManager.getTest().log(Status.FAIL,
-                    "❌ FAILED: " + result.getThrowable().getMessage());
+                    "FAILED: " + result.getThrowable().getMessage());
         }
     }
 
@@ -25,7 +25,7 @@ public class TestNGListener implements ITestListener {
     public void onTestSkipped(ITestResult result) {
         if (ExtentReportManager.getTest() != null) {
             ExtentReportManager.getTest().log(Status.SKIP,
-                    "⚠️ SKIPPED: " + (result.getThrowable() != null ? result.getThrowable().getMessage() : ""));
+                    "SKIPPED: " + (result.getThrowable() != null ? result.getThrowable().getMessage() : ""));
         }
     }
 }
