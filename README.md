@@ -13,12 +13,12 @@ platzi-api-tests/
     └── test/
         ├── java/com/platzi/api/
         │   ├── tests/
-        │   │   ├── AuthTests.java             (8 TCs)
-        │   │   ├── ProductsGetTests.java      (11 TCs)
-        │   │   ├── ProductsCrudTests.java     (9 TCs)
-        │   │   ├── ProductsFilterTests.java   (5 TCs)
-        │   │   ├── CategoriesTests.java       (8 TCs)
-        │   │   └── UsersTests.java            (10 TCs)
+        │   │   ├── AuthTests.java             
+        │   │   ├── ProductsGetTests.java      
+        │   │   ├── ProductsCrudTests.java    
+        │   │   ├── ProductsFilterTests.java   
+        │   │   ├── CategoriesTests.java       
+        │   │   └── UsersTests.java            
         │   └── utils/
         │       ├── BaseTest.java
         │       ├── ConfigManager.java
@@ -29,25 +29,6 @@ platzi-api-tests/
 ```
 
 ---
-
-## Prerequisites
-
-- Java 11+
-- Maven 3.8+
-
----
-
-## How to Run
-
-### Run full regression suite
-```bash
-mvn clean test
-```
-
-### Run only smoke tests
-```bash
-mvn clean test -Dgroups=smoke
-```
 
 ### Run specific module
 ```bash

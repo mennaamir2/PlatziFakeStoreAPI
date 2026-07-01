@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Platzi Fake Store API - Full Test Suite" verbose="2" parallel="none">
+
+    <listeners>
+        <listener class-name="com.platzi.api.utils.TestNGListener"/>
+    </listeners>
+
+    <!-- ========== SMOKE SUITE ========== -->
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.platzi.api.tests.AuthTests"/>
+            <class name="com.platzi.api.tests.ProductsGetTests"/>
+            <class name="com.platzi.api.tests.ProductsCrudTests"/>
+            <class name="com.platzi.api.tests.CategoriesTests"/>
+            <class name="com.platzi.api.tests.UsersTests"/>
+        </classes>
+    </test>
+
+    <!-- ========== FULL REGRESSION ========== -->
+    <test name="Full Regression - Auth">
+        <classes>
+            <class name="com.platzi.api.tests.AuthTests"/>
+        </classes>
+    </test>
+
+    <test name="Full Regression - Products GET">
+        <classes>
+            <class name="com.platzi.api.tests.ProductsGetTests"/>
+        </classes>
+    </test>
+
+    <test name="Full Regression - Products CRUD">
+        <classes>
+            <class name="com.platzi.api.tests.ProductsCrudTests"/>
+        </classes>
+    </test>
+
+    <test name="Full Regression - Products Filter">
+        <classes>
+            <class name="com.platzi.api.tests.ProductsFilterTests"/>
+        </classes>
+    </test>
+
+    <test name="Full Regression - Categories">
+        <classes>
+            <class name="com.platzi.api.tests.CategoriesTests"/>
+        </classes>
+    </test>
+
+    <test name="Full Regression - Users">
+        <classes>
+            <class name="com.platzi.api.tests.UsersTests"/>
+        </classes>
+    </test>
+
+</suite>
