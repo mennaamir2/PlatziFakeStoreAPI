@@ -13,8 +13,7 @@ import static org.hamcrest.Matchers.*;
 public class AuthTests extends BaseTest {
 
 
-    @Test(description = "Login with valid credentials returns access_token and refresh_token",
-          groups = {"auth", "smoke"})
+    @Test
     public void TC_AUTH_001_LoginValidCredentials() {
         log("Sending POST /auth/login with valid credentials");
 
@@ -61,7 +60,6 @@ public class AuthTests extends BaseTest {
         log("Received 401 as expected");
     }
 
-    // ==================== TC-AUTH-003 ====================
     @Test(description = "Login with non-existent email returns 401",
           groups = {"auth", "negative"})
     public void TC_AUTH_003_LoginNonExistentEmail() {
