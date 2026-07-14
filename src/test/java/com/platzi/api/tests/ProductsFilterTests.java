@@ -1,20 +1,15 @@
 package com.platzi.api.tests;
-
 import com.platzi.api.utils.BaseTest;
 import com.platzi.api.utils.ConfigManager;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
 import java.util.List;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class ProductsFilterTests extends BaseTest {
 
-    // ==================== TC-FILTER-001 ====================
-    @Test(description = "GET /products?title=Generic returns products matching title",
-          groups = {"filter"})
+    @Test
     public void TC_FILTER_001_FilterByTitle() {
         log("Sending GET /products?title=Generic");
 
@@ -30,9 +25,7 @@ public class ProductsFilterTests extends BaseTest {
         log("Filter by title executed successfully");
     }
 
-    // ==================== TC-FILTER-002 ====================
-    @Test(description = "GET /products?price_min=10&price_max=100 returns products in price range",
-          groups = {"filter"})
+    @Test
     public void TC_FILTER_002_FilterByPriceRange() {
         log("Sending GET /products?price_min=10&price_max=100");
 
@@ -56,9 +49,7 @@ public class ProductsFilterTests extends BaseTest {
         log("All returned products are within price range [10, 100]");
     }
 
-    // ==================== TC-FILTER-003 ====================
-    @Test(description = "GET /products?categoryId=1 returns products of that category",
-          groups = {"filter"})
+    @Test
     public void TC_FILTER_003_FilterByCategoryId() {
         log("Sending GET /products?categoryId=1");
 
@@ -81,9 +72,7 @@ public class ProductsFilterTests extends BaseTest {
         log("All returned products belong to categoryId=1");
     }
 
-    // ==================== TC-FILTER-004 ====================
-    @Test(description = "GET /products?title=XXXNOTEXIST returns empty list",
-          groups = {"filter", "negative"})
+    @Test
     public void TC_FILTER_004_FilterByTitle_NoMatch() {
         log("Sending GET /products?title=XXXNOTEXIST");
 
@@ -103,9 +92,7 @@ public class ProductsFilterTests extends BaseTest {
         log("Empty list returned for non-matching title filter");
     }
 
-    // ==================== TC-FILTER-005 ====================
-    @Test(description = "GET /products?price_min=500&price_max=100 (inverted range) handles gracefully",
-          groups = {"filter", "negative", "boundary"})
+    @Test
     public void TC_FILTER_005_FilterInvertedPriceRange() {
         log("Sending GET /products?price_min=500&price_max=100 (inverted range)");
 
@@ -118,7 +105,6 @@ public class ProductsFilterTests extends BaseTest {
         .then()
                 .extract().response();
 
-        // Should return 200 with empty or 400
         assert response.statusCode() == 200 || response.statusCode() == 400
                 : "Unexpected status for inverted range: " + response.statusCode();
 

@@ -1,17 +1,14 @@
 package com.platzi.api.tests;
-
 import com.platzi.api.models.LoginRequest;
 import com.platzi.api.models.LoginResponse;
 import com.platzi.api.utils.BaseTest;
 import com.platzi.api.utils.ConfigManager;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class AuthTests extends BaseTest {
-
 
     @Test
     public void TC_AUTH_001_LoginValidCredentials() {
@@ -39,8 +36,7 @@ public class AuthTests extends BaseTest {
         log("Login successful. Token acquired: " + accessToken.substring(0, 20) + "...");
     }
 
-    @Test(description = "Login with invalid password returns 401 Unauthorized",
-          groups = {"auth", "negative"})
+    @Test
     public void TC_AUTH_002_LoginInvalidPassword() {
         log("Sending POST /auth/login with wrong password");
 
@@ -60,8 +56,7 @@ public class AuthTests extends BaseTest {
         log("Received 401 as expected");
     }
 
-    @Test(description = "Login with non-existent email returns 401",
-          groups = {"auth", "negative"})
+    @Test
     public void TC_AUTH_003_LoginNonExistentEmail() {
         log("Sending POST /auth/login with non-existent email");
 
@@ -81,9 +76,7 @@ public class AuthTests extends BaseTest {
         log("Received 401 as expected");
     }
 
-    // ==================== TC-AUTH-004 ====================
-    @Test(description = "Login with missing email field returns 400",
-          groups = {"auth", "negative"})
+    @Test
     public void TC_AUTH_004_LoginMissingEmail() {
         log("Sending POST /auth/login with missing email");
 
@@ -102,9 +95,7 @@ public class AuthTests extends BaseTest {
         log("Received 4xx as expected");
     }
 
-    // ==================== TC-AUTH-005 ====================
-    @Test(description = "Login with empty body returns 400",
-          groups = {"auth", "negative"})
+    @Test
     public void TC_AUTH_005_LoginEmptyBody() {
         log("Sending POST /auth/login with empty body");
 
@@ -121,10 +112,7 @@ public class AuthTests extends BaseTest {
         log("Received 4xx as expected");
     }
 
-    // ==================== TC-AUTH-006 ====================
-    @Test(description = "GET /auth/profile with valid Bearer token returns user profile",
-          dependsOnMethods = {"TC_AUTH_001_LoginValidCredentials"},
-          groups = {"auth", "smoke"})
+    @Test(dependsOnMethods = {"TC_AUTH_001_LoginValidCredentials"})
     public void TC_AUTH_006_GetProfileWithValidToken() {
         log("Sending GET /auth/profile with valid token");
 
@@ -143,9 +131,7 @@ public class AuthTests extends BaseTest {
         log("Profile retrieved successfully");
     }
 
-    // ==================== TC-AUTH-007 ====================
-    @Test(description = "GET /auth/profile without token returns 401",
-          groups = {"auth", "negative"})
+    @Test
     public void TC_AUTH_007_GetProfileWithoutToken() {
         log("Sending GET /auth/profile without Authorization header");
 
@@ -159,9 +145,7 @@ public class AuthTests extends BaseTest {
         log("Received 401 as expected");
     }
 
-    // ==================== TC-AUTH-008 ====================
-    @Test(description = "GET /auth/profile with malformed Bearer token returns 401",
-          groups = {"auth", "negative"})
+    @Test
     public void TC_AUTH_008_GetProfileWithInvalidToken() {
         log("Sending GET /auth/profile with fake token");
 

@@ -1,12 +1,10 @@
 package com.platzi.api.tests;
-
 import com.platzi.api.models.Category;
 import com.platzi.api.models.CategoryRequest;
 import com.platzi.api.utils.BaseTest;
 import com.platzi.api.utils.ConfigManager;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
@@ -14,9 +12,7 @@ public class CategoriesTests extends BaseTest {
 
     private static int createdCategoryId;
 
-    // ==================== TC-CAT-001 ====================
-    @Test(description = "GET /categories returns list with id, name, image, slug",
-          groups = {"categories", "smoke"})
+    @Test
     public void TC_CAT_001_GetAllCategories() {
         log("Sending GET /categories");
 
@@ -36,9 +32,7 @@ public class CategoriesTests extends BaseTest {
         log("Categories list returned successfully");
     }
 
-    // ==================== TC-CAT-002 ====================
-    @Test(description = "GET /categories/{id} returns correct category",
-          groups = {"categories"})
+    @Test
     public void TC_CAT_002_GetCategoryById_Valid() {
         log("Sending GET /categories/1");
 
@@ -57,9 +51,7 @@ public class CategoriesTests extends BaseTest {
         log("Category retrieved: " + cat.getName());
     }
 
-    // ==================== TC-CAT-003 ====================
-    @Test(description = "GET /categories/{id} non-existent ID returns 400/404",
-          groups = {"categories", "negative"})
+    @Test
     public void TC_CAT_003_GetCategoryById_NotFound() {
         log("Sending GET /categories/99999");
 
@@ -76,9 +68,7 @@ public class CategoriesTests extends BaseTest {
         log("Received " + response.statusCode() + " for non-existent category");
     }
 
-    // ==================== TC-CAT-004 ====================
-    @Test(description = "POST /categories creates a new category",
-          groups = {"categories", "crud"})
+    @Test
     public void TC_CAT_004_CreateCategory_Valid() {
         log("Sending POST /categories");
 
@@ -104,9 +94,7 @@ public class CategoriesTests extends BaseTest {
         log("Category created with ID: " + createdCategoryId);
     }
 
-    // ==================== TC-CAT-005 ====================
-    @Test(description = "POST /categories without name returns 400",
-          groups = {"categories", "crud", "negative"})
+    @Test
     public void TC_CAT_005_CreateCategory_MissingName() {
         log("Sending POST /categories without name");
 
@@ -125,10 +113,7 @@ public class CategoriesTests extends BaseTest {
         log("Received 400 for missing name as expected");
     }
 
-    // ==================== TC-CAT-006 ====================
-    @Test(description = "PUT /categories/{id} updates category name",
-          dependsOnMethods = {"TC_CAT_004_CreateCategory_Valid"},
-          groups = {"categories", "crud"})
+    @Test(dependsOnMethods = {"TC_CAT_004_CreateCategory_Valid"})
     public void TC_CAT_006_UpdateCategory_Valid() {
         log("Sending PUT /categories/" + createdCategoryId);
 
@@ -149,10 +134,7 @@ public class CategoriesTests extends BaseTest {
         log("Category updated successfully");
     }
 
-    // ==================== TC-CAT-007 ====================
-    @Test(description = "DELETE /categories/{id} deletes category",
-          dependsOnMethods = {"TC_CAT_006_UpdateCategory_Valid"},
-          groups = {"categories", "crud"})
+    @Test(dependsOnMethods = {"TC_CAT_006_UpdateCategory_Valid"})
     public void TC_CAT_007_DeleteCategory_Valid() {
         log("Sending DELETE /categories/" + createdCategoryId);
 
@@ -167,9 +149,7 @@ public class CategoriesTests extends BaseTest {
         log("Category deleted successfully");
     }
 
-    // ==================== TC-CAT-008 ====================
-    @Test(description = "GET /categories/{id}/products returns products for that category",
-          groups = {"categories"})
+    @Test
     public void TC_CAT_008_GetProductsByCategory() {
         log("Sending GET /categories/1/products");
 

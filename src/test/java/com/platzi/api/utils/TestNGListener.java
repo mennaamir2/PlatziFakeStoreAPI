@@ -1,5 +1,4 @@
 package com.platzi.api.utils;
-
 import com.aventstack.extentreports.Status;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
